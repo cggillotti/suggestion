@@ -4,6 +4,40 @@
   href="https://fonts.googleapis.com/css?family=Outfit">
 
 <style>
+/* https://developer.mozilla.org/en-US/docs/Web/API/Screen_Wake_Lock_API */
+.select-row {
+  list-style-type: none;
+  margin: 25px 0 0 0;
+  padding: 0;
+  display: flex;
+flex-direction: row;
+align-items: center;
+}
+
+.select-row li {
+  margin: 0 5px 0 0;
+  width: 100px;
+  height: 40px;
+  position: relative;
+}
+
+.select-row label,
+.select-row input {
+  display: block;
+  border: 1px black dashed;
+  text-align: center;
+}
+
+.select-row input {
+    position: fixed;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.select-row input[type="radio"]:checked+label,
+.Checked+label {
+  border: 2px black solid;
+}
 
 body {
   height: 100%;
@@ -43,18 +77,51 @@ background: linear-gradient(0deg, #b8f0a7, #5edfdf, #ebe18f, #f15858);
 }
 
 #suggestionBox {
-    position: absolute;
+    /* position: absolute;
     width:50%;
     top: 50%;
     bottom: 50%;
     right: 50%;
-    left: 50%;
+    left: 50%; */
+    border: 1px solid #000;
+    padding: 10px;
+    text-align: center;
+
+}
+
+button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    margin: 0;
+    text-decoration: none;
+    border: 1px black dashed;
+    background: rgba(0,0,0,0.2);
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+button:hover,
+button:focus {
+    border: 1px solid black;
+}
+
+button:focus {
+    border: 1px solid black;
+}
+
+button:active {
+    transform: scale(0.99);
+    border: 1px solid black;
 }
 
 .suggestion {
-  animation-duration: 3s;
+  /* animation-duration: 3s;
   animation-name: slidein;
-  animation-fill-mode: forwards;
+  animation-fill-mode: forwards; */
+  font-size:2vw;
 }
 
 @keyframes slidein {
@@ -74,14 +141,23 @@ window.addEventListener('load', function() {
     var isTimerOn = false;
     var timer = null;
     var  seconds, minutes;
-    document.querySelector("#get").addEventListener('click',(e)=>{
-      
+
+    function getRandomItem() {
         var rand = Math.floor(Math.random() * suggestions.length) -1;
         document.querySelector("#suggestion").innerHTML = suggestions[rand];
         document.querySelector("#suggestion").classList.add("hidden");
         document.querySelector("#suggestion").classList.remove("hidden");
         document.querySelector("#suggestion").classList.remove("suggestion");
         document.querySelector("#suggestion").classList.add("suggestion");
+    }
+    getRandomItem();
+
+    document.querySelector("#get").addEventListener('click',(e)=>{
+        getRandomItem();
+    });
+
+    document.querySelector("#get").addEventListener('click',(e)=>{
+        getRandomItem();
     });
 
     document.querySelector("#stop").addEventListener('click',(e)=>{
@@ -115,6 +191,7 @@ window.addEventListener('load', function() {
         if(timer) {
             clearInterval(timer);
         }
+
         isTimerOn = true;
         document.querySelector("body").classList.remove("timer-on");
         document.querySelector("body").classList.add("timer-on");
@@ -132,7 +209,6 @@ window.addEventListener('load', function() {
             } else {
                 document.querySelector("#display").innerHTML = `${minutes}:0${seconds}`;  
             }
-        
         
         },1000);
       
@@ -254,7 +330,25 @@ var suggestions = [
         <span id="suggestion" class="hidden"></span>
     </div>
     <div id="control">
-        <button id="get">Get</button>
+
+        <ul class="select-row">
+            <li>
+              <input type="radio" id="get" name="type" />
+              <label for="get">All</label>
+            </li>
+            <li>
+                <input type="radio" id="places" name="type" />
+                <label for="places">Places</label>
+              </li>
+              <li>
+                <input type="radio" id="jobs" name="type" />
+                <label for="jobs">Jobs</label>
+              </li>
+              <li>
+                <input type="radio" id="toyi" name="type" />
+                <label for="toyi">TOYI</label>
+              </li>
+        </ul>
     </div>
 
     <div id="timer">
@@ -264,9 +358,9 @@ var suggestions = [
         <div id="set">
             <!-- Set length-->
             <!-- Scene "Lap"-->
-            <button id="start">Start</button>
-            <button id="stop">Stop</button>
-            <button id="scene">Scene</button>
+            <button id="start" class="control">Start</button>
+            <button id="stop" class="control">Stop</button>
+            <button id="scene" class="control">Scene</button>
         </div>
     </div>
     <div id="markers">
