@@ -5,6 +5,12 @@
   <script src="/js/words.js" ></script>
 <style>
 /* https://developer.mozilla.org/en-US/docs/Web/API/Screen_Wake_Lock_API */
+
+.header {
+font-size: 2rem;
+text-align: center;
+}
+
 .select-row {
   list-style-type: none;
   margin: 25px 0 0 0;
@@ -59,6 +65,13 @@ align-items: center;
 
 .select-row label {
   padding: 10px;
+  font-size: 1.5rem;
+}
+
+@media  (max-width: 1441px) {
+  .select-row label {
+    font-size: 3rem;
+  }
 }
 
 .select-row input {
@@ -146,6 +159,7 @@ button {
 @media (max-width: 1441px) {
   button {
     padding: 20px 15px;
+    font-size: 3rem;
   }
   .two-span {
     padding: 40px 15px;
@@ -215,12 +229,12 @@ window.addEventListener('load', function() {
     //     console.error(`${err.name}, ${err.message}`);
     //   }
     // }
-  
+
     // lockit();
-    
+
 
     function getRandomItem(list) {
-        
+
         var rand = Math.floor(Math.random() * list.length);
         document.querySelector("#suggestion").innerHTML = list[rand];
         document.querySelector("#suggestion").classList.add("hidden");
@@ -248,7 +262,7 @@ window.addEventListener('load', function() {
         document.querySelector("#timestamps").insertAdjacentHTML("beforeend", stamp);
        }
     }
-    
+
     getRandomItem(ALL);
     console.log(SUGGESTIONS);
 
@@ -259,7 +273,7 @@ window.addEventListener('load', function() {
     document.querySelector("#places").addEventListener('click',(e)=>{
         getRandomItem(PLACES);
     });
-    
+
     document.querySelector("#jobs").addEventListener('click',(e)=>{
         getRandomItem(JOBS);
     });
@@ -273,7 +287,7 @@ window.addEventListener('load', function() {
     });
 
     document.querySelector("#stop").addEventListener('click',(e)=>{
-      
+
 
         setEventPoint("Ending Set " + set);
         isTimerOn = false;
@@ -299,7 +313,7 @@ window.addEventListener('load', function() {
     }
 
     document.querySelector("#start").addEventListener('click',(e)=>{
-       
+
         seconds = 0;
         minutes = 0;
         if(timer) {
@@ -312,8 +326,8 @@ window.addEventListener('load', function() {
         document.querySelector("body").classList.add("timer-on");
         document.querySelector("body").setAttribute('style','animation-duration:1200s');
         setEventPoint("Starting Set " + ++set);
-        timer = setInterval(()=>{ 
-                
+        timer = setInterval(()=>{
+
             if(seconds == 59) {
                 seconds = 0;
                 minutes++;
@@ -323,18 +337,18 @@ window.addEventListener('load', function() {
             if(seconds >= 10) {
                 document.querySelector("#display").innerHTML = `${minutes}:${seconds}`;
             } else {
-                document.querySelector("#display").innerHTML = `${minutes}:0${seconds}`;  
+                document.querySelector("#display").innerHTML = `${minutes}:0${seconds}`;
             }
-        
+
         },1000);
-      
+
   });
 })
 </script>
 
 </head>
 <body>
-    <!-- <h1>Get your suggestion here:</h1> -->
+    <h1 class="header">Can I get a suggestion?</h1>
     <div id="suggestionBox">
         <span id="suggestion" class="hidden"></span>
     </div>
@@ -365,7 +379,7 @@ window.addEventListener('load', function() {
             0:00
         </div>
         <div id="set">
-            <!-- Set length 
+            <!-- Set length
             <input type="number" pattern="[0-9]" placeholder="20" min="1" step="1" max="60"></input> -->
             <!-- Scene "Lap"-->
             <button id="start" class="control two-span">Start</button>
