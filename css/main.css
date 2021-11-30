@@ -150,7 +150,7 @@ button:active {
   font-size:8vw;
 }
 
-@media  (min-width: 789px) {
+@media  (min-width: 1789px) {
    body {
       padding-left: 20%;
       padding-right: 20%;
