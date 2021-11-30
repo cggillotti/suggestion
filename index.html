@@ -30,6 +30,13 @@ align-items: center;
   font-size: 5vw;
   text-align: center;
 }
+@media  (max-width: 1441px) {
+  #display {
+  font-size: 23vw;
+  text-align: center;
+  }
+}
+
 
 #timestamps li {
   list-style-type:square;
@@ -40,6 +47,7 @@ align-items: center;
   width: 100px;
   height: 40px;
   position: relative;
+  flex-grow: 1;
 }
 
 .select-row label,
@@ -68,11 +76,19 @@ body {
   height: 100%;
   margin: 0;
   overflow: hidden;
-  background: linear-gradient(to bottom, #5f3434, #b7b7e2);
+  background: linear-gradient(to bottom, #6e6e6e, #ffffff);
   padding-left: 30%;
   padding-right: 30%;
   padding-top: 50px;
   font-family: 'Outfit', serif;
+}
+
+@media  (max-width: 1441px) {
+  body {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 20px;
+  }
 }
 
 .timer-on {
@@ -127,6 +143,15 @@ button {
     -webkit-appearance: none;
     -moz-appearance: none;
 }
+@media (max-width: 1441px) {
+  button {
+    padding: 20px 15px;
+  }
+  .two-span {
+    padding: 40px 15px;
+  }
+
+}
 
 button:hover,
 button:focus {
@@ -144,6 +169,11 @@ button:active {
 
 .suggestion {
   font-size:2vw;
+}
+@media  (max-width: 1441px) {
+  .suggestion {
+  font-size: 7vw;
+  }
 }
 
 @keyframes slidein {
@@ -163,14 +193,34 @@ window.addEventListener('load', function() {
     var set = 0;
     var isTimerOn = false;
     var timer = null;
+    var lastEvent = null;
     var  seconds, minutes;
+    // The wake lock sentinel.
+    let wakeLock = null;
     const WORDS = SUGGESTIONS.words;
     const PLACES = SUGGESTIONS.places;
     const JOBS = SUGGESTIONS.jobs;
     const ALL = SUGGESTIONS.words.concat(SUGGESTIONS.places);
     var currentLibray = ALL;
 
+
+    // async function lockit() {
+    // // create an async function to request a wake lock
+    // try {
+    //     wakeLock = await navigator.wakeLock.request('screen');
+    //     console.log('Wake Lock is active!');
+    //     return wakeLock;
+    //   } catch (err) {
+    //     // The Wake Lock request has failed - usually system related, such as battery.
+    //     console.error(`${err.name}, ${err.message}`);
+    //   }
+    // }
+  
+    // lockit();
+    
+
     function getRandomItem(list) {
+        
         var rand = Math.floor(Math.random() * list.length);
         document.querySelector("#suggestion").innerHTML = list[rand];
         document.querySelector("#suggestion").classList.add("hidden");
@@ -183,12 +233,18 @@ window.addEventListener('load', function() {
     function setEventPoint(event) {
       let stamp;
        if(isTimerOn) {
+        if(lastEvent != null) {
+          const currentEventTime = seconds + minutes * 60;
+          const difference = currentEventTime - lastEvent;
+          const elapsed = `(${difference/60}:)`;
+        }
+
         if(seconds <10 ) {
              stamp = `<li>${minutes}:0${seconds} - ${event}</li>`;
         }else {
              stamp = `<li>${minutes}:${seconds} - ${event}</li>`;
         }
-       
+        lastEvent = seconds + minutes * 60;
         document.querySelector("#timestamps").insertAdjacentHTML("beforeend", stamp);
        }
     }
@@ -251,6 +307,7 @@ window.addEventListener('load', function() {
         }
 
         isTimerOn = true;
+
         document.querySelector("body").classList.remove("timer-on");
         document.querySelector("body").classList.add("timer-on");
         document.querySelector("body").setAttribute('style','animation-duration:1200s');
