@@ -6,10 +6,9 @@ text-align: center;
 }
 
 body {
-    height: 100%;
     margin: 0;
-    overflow: hidden;
-    background: linear-gradient(to bottom, #6e6e6e, #ffffff);
+    /* overflow: hidden; */
+    background: linear-gradient(to bottom, #bebdbd, #ffffff);
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 20px;
@@ -44,9 +43,15 @@ body {
   align-items: center;
   }
 
+  #timestamps {
+      max-height: 400px;
+      overflow-y: scroll;
+      background: rgba(0,0,0,0.2);
+  }
+
 #timestamps li {
-  list-style-type:square;
-  font-size: 1.5rem;
+  font-size: 2rem;
+  list-style-type:none;
 }
 
 .select-row li {
@@ -82,7 +87,7 @@ body {
 
 .timer-on {
 background: linear-gradient(0deg, #b8f0a7, #5edfdf, #ebe18f, #f15858);
-	background-size: 400% 400%;
+	background-size: 2000% 2000%;
 	animation: 15s gradient ease 1;
 	height: 100vh;
     animation-fill-mode: forwards;
@@ -107,16 +112,9 @@ background: linear-gradient(0deg, #b8f0a7, #5edfdf, #ebe18f, #f15858);
 }
 
 #suggestionBox {
-    /* position: absolute;
-    width:50%;
-    top: 50%;
-    bottom: 50%;
-    right: 50%;
-    left: 50%; */
     border: 1px solid #000;
     padding: 10px;
     text-align: center;
-
 }
 
 button {
@@ -125,7 +123,7 @@ button {
     text-decoration: none;
     border: 1px black dashed;
     background: rgba(0,0,0,0.2);
-    font-size: 1.5rem;
+    font-size: 2rem;
     cursor: pointer;
     text-align: center;
     -webkit-appearance: none;

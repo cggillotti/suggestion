@@ -57,9 +57,9 @@ window.addEventListener('load', function() {
         }
 
         if(seconds <10 ) {
-             stamp = `<li>${minutes}:0${seconds} - ${event}</li>`;
+             stamp = `<li>    ${minutes}:0${seconds} - ${event}</li>`;
         }else {
-             stamp = `<li>${minutes}:${seconds} - ${event}</li>`;
+             stamp = `<li>    ${minutes}:${seconds} - ${event}</li>`;
         }
         lastEvent = seconds + minutes * 60;
         document.querySelector("#timestamps").insertAdjacentHTML("beforeend", stamp);
@@ -92,7 +92,7 @@ window.addEventListener('load', function() {
     document.querySelector("#stop").addEventListener('click',(e)=>{
 
 
-        setEventPoint("Ending Set " + set);
+        setEventPoint("🛑 Ending Set " + set);
         isTimerOn = false;
         clearInterval(timer);
         document.querySelector("body").classList.remove("timer-on");
@@ -117,6 +117,10 @@ window.addEventListener('load', function() {
 
     document.querySelector("#start").addEventListener('click',(e)=>{
 
+        if(isTimerOn) {
+          return;
+        }
+
         seconds = 0;
         minutes = 0;
         if(timer) {
@@ -127,8 +131,8 @@ window.addEventListener('load', function() {
 
         document.querySelector("body").classList.remove("timer-on");
         document.querySelector("body").classList.add("timer-on");
-        document.querySelector("body").setAttribute('style','animation-duration:1200s');
-        setEventPoint("Starting Set " + ++set);
+        document.querySelector("body").setAttribute('style','animation-duration:30s');
+        setEventPoint("🟩 Starting Set " + ++set);
         timer = setInterval(()=>{
 
             if(seconds == 59) {
@@ -196,6 +200,10 @@ window.addEventListener('load', function() {
         <ol id="timestamps">
 
         </ol>
+    </div>
+    <div id="footer">
+      <h2>CanIGet.xyz</h2>
+      <p>See it on <a href="https://github.com/cggillotti/suggestion">GitHub</a></p>
     </div>
 </body>
 </html>
