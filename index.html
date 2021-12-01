@@ -88,6 +88,11 @@ window.addEventListener('load', function() {
         getRandomItem(WORDS);
           });
 
+    document.querySelector("#bellbutton").addEventListener('click', (e)=> {
+      var audio = new Audio('media/bell.wav');
+      audio.play();
+    });
+
     document.querySelector("#tag1config").addEventListener('change', (e)=> {
       document.querySelector("#tag1").innerHTML = e.currentTarget.value;
     });
@@ -122,8 +127,6 @@ window.addEventListener('load', function() {
     });
 
     document.querySelector("#stop").addEventListener('click',(e)=>{
-
-
         setEventPoint("🛑 Ending Set " + set);
         isTimerOn = false;
         clearInterval(timer);
@@ -174,6 +177,9 @@ window.addEventListener('load', function() {
 
 </head>
 <body style="animation-duration:1200s">
+    <audio id="bell" class="hidden">
+      <source src="/media/bell.wav" preload="auto" id="bells"></audio>
+    </audio>
     <h1 class="header">Can I get a suggestion?</h1>
     <button id="open-options" class="clear-bg">⚙️</button>
     <div id="suggestionBox">
@@ -215,6 +221,7 @@ window.addEventListener('load', function() {
             <button id="tag2" class="control tagcontrol">Group Game</button>
             <button id="tag3" class="control tagcontrol">Run</button>
             <button id="tag4" class="control tagcontrol">Callback</button>
+            <button id="bellbutton" class="control two-span">🛎</button>
         </div>
     </div>
     <div id="markers">

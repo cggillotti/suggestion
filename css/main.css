@@ -163,7 +163,7 @@ button:active {
   font-family: 'Patua One';
 }
 
-@media  (min-width: 1789px) {
+@media  (min-width: 1289px) {
    body {
       padding-left: 20%;
       padding-right: 20%;
