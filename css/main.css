@@ -3,6 +3,7 @@
 .header {
 font-size: 2rem;
 text-align: center;
+font-style: italic;
 }
 
 body {
@@ -65,7 +66,7 @@ body {
 .select-row label,
 .select-row input {
   display: block;
-  border: 1px black dashed;
+  border: none;
   text-align: center;
 }
 
@@ -112,7 +113,6 @@ background: linear-gradient(0deg, #b8f0a7, #5edfdf, #ebe18f, #f15858);
 }
 
 #suggestionBox {
-    border: 1px solid #000;
     padding: 10px;
     text-align: center;
 }
@@ -121,7 +121,7 @@ button {
     display: inline-block;
     margin: 0;
     text-decoration: none;
-    border: 1px black dashed;
+    border: none;
     background: rgba(0,0,0,0.2);
     font-size: 2rem;
     cursor: pointer;
@@ -129,6 +129,7 @@ button {
     -webkit-appearance: none;
     -moz-appearance: none;
     padding: 20px 15px;
+    min-height: 120px;
 }
 
 button:hover,
@@ -146,7 +147,8 @@ button:active {
 }
 
 .suggestion {
-  font-size:8vw;
+  font-size:12vw;
+  font-family: 'Patua One';
 }
 
 @media  (min-width: 1789px) {

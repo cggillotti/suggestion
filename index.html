@@ -2,6 +2,8 @@
 <head>
     <link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Outfit">
+  <link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Patua+One">
   <script src="/js/words.js" ></script>
   <link href="/css/main.css" rel="stylesheet">
 <script language="javascript">
@@ -62,7 +64,7 @@ window.addEventListener('load', function() {
              stamp = `<li>    ${minutes}:${seconds} - ${event}</li>`;
         }
         lastEvent = seconds + minutes * 60;
-        document.querySelector("#timestamps").insertAdjacentHTML("beforeend", stamp);
+        document.querySelector("#timestamps").insertAdjacentHTML("afterbegin", stamp);
        }
     }
 
@@ -103,6 +105,10 @@ window.addEventListener('load', function() {
       setEventPoint("Scene");
     });
 
+    document.querySelector("#callback").addEventListener('click',(e)=>{
+      setEventPoint("Callback");
+    });
+
     document.querySelector("#groupgame").addEventListener('click',(e)=>{
       setEventPoint("Group Game");
     });
@@ -131,7 +137,7 @@ window.addEventListener('load', function() {
 
         document.querySelector("body").classList.remove("timer-on");
         document.querySelector("body").classList.add("timer-on");
-        document.querySelector("body").setAttribute('style','animation-duration:30s');
+        document.querySelector("body").setAttribute('style','animation-duration:1200s');
         setEventPoint("🟩 Starting Set " + ++set);
         timer = setInterval(()=>{
 
@@ -163,7 +169,7 @@ window.addEventListener('load', function() {
 
         <ul class="select-row">
             <li>
-              <input type="radio" id="get" name="type" />
+              <input type="radio" id="get" name="type" checked/>
               <label for="get">All</label>
             </li>
             <li>
@@ -194,6 +200,7 @@ window.addEventListener('load', function() {
             <button id="scene" class="control">Scene</button>
             <button id="groupgame" class="control">Group Game</button>
             <button id="run" class="control">Run</button>
+            <button id="callback" class="control">Callback</button>
         </div>
     </div>
     <div id="markers">
