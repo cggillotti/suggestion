@@ -23,6 +23,8 @@ window.addEventListener('load', function() {
     var currentLibray = ALL;
 
 
+
+
     // async function lockit() {
     // // create an async function to request a wake lock
     // try {
@@ -69,7 +71,6 @@ window.addEventListener('load', function() {
     }
 
     getRandomItem(ALL);
-    console.log(SUGGESTIONS);
 
     document.querySelector("#get").addEventListener('click',(e)=>{
         getRandomItem(ALL);
@@ -87,8 +88,37 @@ window.addEventListener('load', function() {
         getRandomItem(WORDS);
           });
 
+    document.querySelector("#tag1config").addEventListener('change', (e)=> {
+      document.querySelector("#tag1").innerHTML = e.currentTarget.value;
+    });
+
+    document.querySelector("#tag2config").addEventListener('change', (e)=> {
+      document.querySelector("#tag2").innerHTML = e.currentTarget.value;
+    });
+
+    document.querySelector("#tag3config").addEventListener('change', (e)=> {
+      document.querySelector("#tag3").innerHTML = e.currentTarget.value;
+    });
+
+    document.querySelector("#tag4config").addEventListener('change', (e)=> {
+      document.querySelector("#tag4").innerHTML = e.currentTarget.value;
+    });
+
+    document.querySelector("#settime").addEventListener('change', (e) => {
+      var timeinseconds = e.currentTarget.value * 60;
+      document.querySelector("body").setAttribute('style',`animation-duration:${timeinseconds}s`);
+    });
+
     document.querySelector("#suggestionBox").addEventListener('click',(e)=>{
         getRandomItem(currentLibray);
+    });
+
+    document.querySelector("#close-options").addEventListener('click',(e)=>{
+      document.querySelector("#options").classList.add("hidden");
+    });
+
+    document.querySelector("#open-options").addEventListener('click',(e)=>{
+      document.querySelector("#options").classList.remove("hidden");
     });
 
     document.querySelector("#stop").addEventListener('click',(e)=>{
@@ -101,25 +131,9 @@ window.addEventListener('load', function() {
         document.querySelector("#display").innerHTML = "0:00";
     });
 
-    document.querySelector("#scene").addEventListener('click',(e)=>{
-      setEventPoint("Scene");
-    });
-
-    document.querySelector("#callback").addEventListener('click',(e)=>{
-      setEventPoint("Callback");
-    });
-
-    document.querySelector("#groupgame").addEventListener('click',(e)=>{
-      setEventPoint("Group Game");
-    });
-
-    document.querySelector("#run").addEventListener('click',(e)=>{
-      setEventPoint("Run");
-    });
-
-    function backgroundChange() {
-
-    }
+    document.querySelectorAll(".tagcontrol").forEach(con => con.addEventListener('click',(e)=>{
+      setEventPoint(e.currentTarget.innerHTML);
+    }));
 
     document.querySelector("#start").addEventListener('click',(e)=>{
 
@@ -137,7 +151,6 @@ window.addEventListener('load', function() {
 
         document.querySelector("body").classList.remove("timer-on");
         document.querySelector("body").classList.add("timer-on");
-        document.querySelector("body").setAttribute('style','animation-duration:1200s');
         setEventPoint("🟩 Starting Set " + ++set);
         timer = setInterval(()=>{
 
@@ -162,6 +175,7 @@ window.addEventListener('load', function() {
 </head>
 <body>
     <h1 class="header">Can I get a suggestion?</h1>
+    <button id="open-options" class="clear-bg">⚙️</button>
     <div id="suggestionBox">
         <span id="suggestion" class="hidden"></span>
     </div>
@@ -194,19 +208,31 @@ window.addEventListener('load', function() {
         <div id="set">
             <!-- Set length
             <input type="number" pattern="[0-9]" placeholder="20" min="1" step="1" max="60"></input> -->
-            <!-- Scene "Lap"-->
+            <!-- tag1 "Lap"-->
             <button id="start" class="control two-span">Start</button>
             <button id="stop" class="control two-span">Stop</button>
-            <button id="scene" class="control">Scene</button>
-            <button id="groupgame" class="control">Group Game</button>
-            <button id="run" class="control">Run</button>
-            <button id="callback" class="control">Callback</button>
+            <button id="tag1" class="control tagcontrol">Scene</button>
+            <button id="tag2" class="control tagcontrol">Group Game</button>
+            <button id="tag3" class="control tagcontrol">Run</button>
+            <button id="tag4" class="control tagcontrol">Callback</button>
         </div>
     </div>
     <div id="markers">
         <ol id="timestamps">
 
         </ol>
+    </div>
+    <div id="options" class="hidden">
+      <h2>Options</h2>
+      <p>Configure Set Time</p>
+      <input id="settime" type="number" step="1" min="1" max="60" value="20">
+      <p>Configure Events</p>
+      <input type="text" id="tag1config" value="Scene"/>
+      <input type="text" id="tag2config" value="Group Game"/>
+      <input type="text" id="tag3config" value="Run"/>
+      <input type="text" id="tag4config" value="Callback"/>
+      <p>Configure Etc</p>
+      <button id="close-options"class="clear-bg">⚙️</button>
     </div>
     <div id="footer">
       <h2>CanIGet.xyz</h2>

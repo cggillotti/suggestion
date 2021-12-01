@@ -1,6 +1,6 @@
 const SUGGESTIONS = {
     words : [
-        "A mysterious act of God's love",
+"A mysterious act of God's love",
 "A capable hand",
 "Toothpase",
 "Brut",
@@ -110,7 +110,8 @@ const SUGGESTIONS = {
 "Cozy Mystery",
 "Cruel Shoes"
         ],
-    places : ["Bus Stop","Pizza Parlor",
+places : ["Bus Stop",
+    "Pizza Parlor",
     "Arcade",
     "Army Base",
     "Art Gallery",

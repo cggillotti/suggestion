@@ -16,6 +16,18 @@ body {
     font-family: 'Outfit', serif;
   }
 
+#options {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 999999;
+    background: white;
+    top:0;
+    text-align: center;
+}
+
+
+
 #control {
     margin-bottom: 30px;
 }
@@ -180,6 +192,20 @@ button:active {
         padding: 40px 15px;
         }
   }
+
+#open-options {
+    position: absolute;
+    top:0;
+    right:20px;
+}
+
+.clear-bg {
+    background: none;
+}
+.clear-bg:hover,
+.clear-bg:active {
+    border:none;
+}
 
 @keyframes slidein {
   from {
