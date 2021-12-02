@@ -19,11 +19,8 @@ window.addEventListener('load', function() {
     const WORDS = SUGGESTIONS.words;
     const PLACES = SUGGESTIONS.places;
     const JOBS = SUGGESTIONS.jobs;
-    const ALL = SUGGESTIONS.words.concat(SUGGESTIONS.places);
+    const ALL = SUGGESTIONS.words.concat(SUGGESTIONS.places).concat(SUGGESTIONS.jobs);
     var currentLibray = ALL;
-
-
-
 
     // async function lockit() {
     // // create an async function to request a wake lock
@@ -242,8 +239,9 @@ window.addEventListener('load', function() {
       <button id="close-options"class="clear-bg">⚙️</button>
     </div>
     <div id="footer">
-      <h2>CanIGet.xyz</h2>
-      <p>See it on <a href="https://github.com/cggillotti/suggestion">GitHub</a></p>
+      <h2>CanIGet.xyz is by CGG</h2>
+      <p>Help out on <a href="https://github.com/cggillotti/suggestion">GitHub</a></p>
+      <p>Support independant comedy</p>
     </div>
 </body>
 </html>
